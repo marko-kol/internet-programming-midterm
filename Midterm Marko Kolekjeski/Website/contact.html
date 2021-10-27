@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript" src="skripta.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="header">
+    <img class="headerimg" src="./header.jpg" alt="">
+  </div>
+    <div class="tab">
+        <button class="tablinks" onclick="location.href='exams.html'">Home</button>
+        <button class="tablinks" onclick="location.href='quiz.html'">Quiz</button>
+        <button class="tablinks" onclick="location.href='contact.html'">Contact</button>
+      </div>
+
+      <div id="Contact" class="tabcontent">
+        <h1>Contact</h1>
+        <!-- <form  actionid="ContactUs" onsubmit="return ValidateForm(this);">
+            <table style="width:100%;max-width:550px;border:0;" cellpadding="8" cellspacing="0">
+                <tr> <td>
+                <label for="Name">Name*:</label>
+                </td> <td>
+                <input name="Name" type="text" maxlength="60" style="width:100%;max-width:250px;" />
+                </td> </tr> <tr> <td>
+                <label for="Surname">Surname*:</label>
+                </td> <td>
+                <input name="Surname" type="text" maxlength="60" style="width:100%;max-width:250px;" />
+                </td> </tr> <tr> <td>
+                <label for="ID">ID:</label>
+                </td> <td>
+                <input name="ID" type="number" maxlength="10" style="width:100%;max-width:250px;" />
+                </td> </tr> <tr> <td>
+                <label for="Email">Email address*:</label>
+                </td> <td>
+                <input name="Email" type="text" maxlength="90" style="width:100%;max-width:250px;" />
+                </td> </tr> <tr> <td>
+                <label for="Comments">Message:</label>
+                </td> <td>
+                <textarea name="Comments" rows="7" cols="40" style="width:100%;max-width:350px;"></textarea>
+                </td> </tr> <tr> <td>
+                * - required fields
+                </td> <td>
+                <input name="skip_Submit" type="button" value="Submit" onclick="saveToLocal()"/>
+                </td> </tr>
+                </table>
+                
+        
+        </form> -->
+
+        <form id="submitForm" name="submitForm">
+
+
+            <form  actionid="ContactUs" onsubmit="return ValidateForm(this);">
+                <table style="width:100%;max-width:550px;border:0;" cellpadding="8" cellspacing="0">
+                    <tr> <td>
+                    <label for="Name">Name*:</label>
+                    </td> <td>
+                    <input id="userName" name="Name" type="text" maxlength="60" style="width:100%;max-width:250px;" />
+                    </td> </tr> <tr> <td>
+                    <label for="Surname">Surname*:</label>
+                    </td> <td>
+                    <input id="Surname" name="Surname" type="text" maxlength="60" style="width:100%;max-width:250px;" />
+                    </td> </tr> <tr> <td>
+                    <label for="ID">ID:</label>
+                    </td> <td>
+                    <input id="ID" name="ID" type="number" maxlength="10" style="width:100%;max-width:250px;" />
+                    </td> </tr> <tr> <td>
+                    <label for="Email">Email address*:</label>
+                    </td> <td>
+                    <input id="Email" name="Email" type="text" maxlength="90" style="width:100%;max-width:250px;" />
+                    </td> </tr> <tr> <td>
+                    <label for="Comments">Message:</label>
+                    </td> <td>
+                    <textarea id="Comments" name="Comments" rows="7" cols="40" style="width:100%;max-width:350px;"></textarea>
+                    </td> </tr> <tr> <td>
+                    * - required fields
+                    </td> <td>
+                    <input type="button" class="button" value="Submit" onclick="saveToLocal()"/>
+                    </td> </tr>
+                    </table>
+                    
+            
+            </form>
+
+
+
+        <!-- <input id="userName" name="userName" class="inp_text" type="text" size="20">
+        <input type="button" class="button" value="Submit" onclick="saveToLocal()"> -->
+        </form>
+      </div>
+
+</body>
+</html>

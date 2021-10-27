@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript" src="skripta.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="timeStart()">
+    <div class="header">
+        <img class="headerimg" src="./header.jpg" alt="">
+      </div>
+    <div class="tab">
+        <button class="tablinks" onclick="location.href='exams.html'">Home</button>
+        <button class="tablinks" onclick="location.href='quiz.html'">Quiz</button>
+        <button class="tablinks" onclick="location.href='contact.html'">Contact</button>
+      </div>
+
+      <div id="Quiz" class="tabcontent">
+        <h1>Quiz</h1>
+        
+        <div id="quiz"></div>
+        <form name="myForm"  required>
+          Name: <input type="text" name="fname">
+          ID: <input type="number" name="studentID">
+          <br><br>
+          <button onclick="return validateForm()" type="button" id="submit">Submit Quiz</button>
+        </form>
+      
+        <div id="results"></div>
+      </div>
+
+
+        
+
+
+      
+      <script>
+
+
+          (function(){
+  function buildQuiz(){
+    // variable to store the HTML output
+    const output = [];
+
+    // for each question...
+    myQuestions.forEach(
+      (currentQuestion, questionNumber) => {
+
+        // variable to store the list of possible answers
+        const answers = [];
+
+        // and for each available answer...
+        for(letter in currentQuestion.answers){
+
+          // ...add an HTML radio button
+          answers.push(
+            `<label>
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${letter} :
+              ${currentQuestion.answers[letter]}
+            </label>`
+          );
+        }
+
+        // add this question and its answers to the output
+        output.push(
+          `<div class="question"> ${currentQuestion.question} </div>
+          <div class="answers"> ${answers.join('')} </div>`
+        );
+      }
+    );
+
+    // finally combine our output list into one string of HTML and put it on the page
+    quizContainer.innerHTML = output.join('');
+  }
+  
+  function showResults(){
+
+    var x = document.forms["myForm"]["fname"].value;
+    var y = document.forms["myForm"]["studentID"].value;
+    if (y == "" || x=="") {
+      alert("Name and ID must be filled out");
+      return false;
+    }
+    else{
+    // gather answer containers from our quiz
+    const answerContainers = quizContainer.querySelectorAll('.answers');
+
+    // keep track of user's answers
+    let numCorrect = 0;
+
+    // for each question...
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+
+      // find selected answer
+      const answerContainer = answerContainers[questionNumber];
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+      // if answer is correct
+      if(userAnswer === currentQuestion.correctAnswer){
+        // add to the number of correct answers
+        numCorrect++;
+
+        // color the answers green
+        answerContainers[questionNumber].style.color = 'lightgreen';
+      }
+      // if answer is wrong or blank
+      else{
+        // color the answers red
+        answerContainers[questionNumber].style.color = 'red';
+      }
+    });
+
+    // show number of correct answers out of total
+    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    timeEnd();
+  }
+}
+
+  const quizContainer = document.getElementById('quiz');
+  const resultsContainer = document.getElementById('results');
+  const submitButton = document.getElementById('submit');
+  const myQuestions = [
+    {
+      question: "Inside which HTML element do we put the JavaScript (choose one)",
+      answers: {
+        a: "&ltscripting&gt",
+        b: "&ltjs&gt",
+        c: "&ltjavascript&gt",
+        d: "&ltscript&gt"  
+      },
+      correctAnswer: "d"
+    },
+    {
+      question: "The external JavaScript file must contain the tag (check all that apply)",
+      answers: {
+        a: "True",
+        b: "False",
+        c: "Both",
+        d: "None"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: 'How do you write "Hello World" in an alert box? ',
+      answers: {
+        a: "Alert(“Hello World”);",
+        b: "alertBox(“Hello World”);",
+        c: "msg(“Hello World”);",
+        d: "msgBoxl(“Hello World”);"
+      },
+      correctAnswer: "a"
+    }
+  ];
+
+  // Kick things off
+  buildQuiz();
+
+  // Event listeners
+  submitButton.addEventListener('click', showResults);
+})();
+      </script>
+</body>
+</html>
